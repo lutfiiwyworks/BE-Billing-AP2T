@@ -1,0 +1,84 @@
+-- CEK BEBAN
+DTKS.VW_CEK_RPBEBAN
+kunabakti.vw_cek_rpbeban
+
+-- cek 720 JN
+DTKS.VWBILLING_720JN
+kunabakti.VWBILLING_720JN
+
+-- cek selisih unsur ptl--
+DTKS.VW_CEK_SELISIH_UNSUR_PTL
+kunabakti.VW_CEK_SELISIH_UNSUR_PTL
+
+-- cek rptag 0 --
+DTKS.VW_CEK_RPTAG_0
+kunabakti.VW_CEK_RPTAG_0
+
+-- cek rppn r3 --
+kunabakti.vw_cek_ppn_r3  --ini bedaa secara casewhen
+dkts.vw_cek_ppn_r3
+
+
+-- ppn ppn --
+ini 1 fitur dari 
+- ppn sewa trafo
+-- ppn bp trafo
+-- ppn sewa kapasitor
+
+-- tgl baca jadi catatan (testing bikin fitur untuk jalanin job)
+
+-- cek materai --
+DTKS.VW_VALIDASI_MATERAI
+kunabakti.VW_VALIDASI_MATERAI
+
+-- cek dibawah 40 jn --
+kunabakti.vw_cek_dibawah40jn
+dtks.vw_cek_dibawah40jn
+
+-- cek kelebihan kvarh --
+kunabakti.cek_anomali_kelebihan_kvarh
+dtks.cek_anomali_kelebihan_kvarh
+
+
+-- CATATAN 24/07/2026 --
+-Cek Pelanggan Beban Beban--cek perhitungan beban -- DONE
+--Cek Saldo BDT
+select a1.*,(rpsaldo_akhir_202606-rpsaldo_awal_202607) SELISIH
+from (
+select a.idpel,
+case when (select idpel from otc.trans_lebihbayar_PASCA C  where C.thblrek='202606' and C.idpel=a.idpel and C.keterangan='DKRP' AND C.POSTINGBILLING='3') is not null then
+    (select rpsaldo_akhir from otc.trans_lebihbayar_PASCA C  where C.thblrek='202606' and C.idpel=a.idpel and C.keterangan='DKRP' AND C.POSTINGBILLING='3')
+else    
+    a.rpsaldo_akhir 
+end rpsaldo_akhir_202606,
+(select rpsaldo_awal from otc.trans_lebihbayar_PASCA b  where b.thblrek='202607' and b.idpel=a.idpel and KETERANGAN='BILLING') rpsaldo_awal_202607
+from otc.trans_lebihbayar_PASCA a where thblrek='202606' AND KETERANGAN='BILLING' and rpsaldo_akhir>0
+) a1
+where  RPSALDO_AKHIR_202606!=RPSALDO_AWAL_202607 -- DONE
+
+--Cek Pelanggan SPEL -- LANGSUNG FILTER GAUSAH ADA 2 KATEGORI -- DONE
+--Cek Pelanggan BTS, TBG, Telkomsel KDPT C dan Interneux KDPT E (TAMBAHAN KOLOM ADA KDPT DAN KDPT_2) -- DONE SESUAI
+--Cek Penambahan Pelanggan Tarif C -- UPDATE JUDUL CEK PEMAKAIAN KAVARH TERTINGGI TARIF C -- DONE
+--Cek Entrian Harga PKS
+Pengecekan entrain Harga pelanggan PKS per IDPEL tertinggi dan terendah dengan kdpt A (DIORDER TERENDAH (DIBAWAH 1000) SAMA TERTINGGI)
+--Cek Anomali Tanggal Baca (masih ada catatan)
+--------Cek Stan Mundur Migrasi----- (anomali data migrasi (pra pasca pasca pra)) -- DONE
+--Cek Anomali Pemakaian Kwh-- done --cek selisih unsur kwh -- DONE
+------cek anomlai kelbihan kvarh-- MINUS FILTER TARIF (MASIH DIPERTANYAKAN)- perlu benerin view ini, perlu nambahin kolom rpkvarh sama tarif -- DONE 
+-- cek anomali angka stan kvharh 0 
+select /*+index(IDX_emulsion.billap2t)*/  unitup,idpel,thblrek,tarif,daya,
+(select tarif_lm from emulsion.bill54_dil b where b.idpel=a.idpel and b.thblrek=a.thblrek) tarif_lm,
+(select daya_lm from emulsion.bill54_dil b where b.idpel=a.idpel and b.thblrek=a.thblrek) daya_lm,
+kdpt,kdpt_2,kdam,jnsmut,thblmut,POSTINGBILLING,tglbacalalu,
+tglbacaakhir,tglrubah,fakm,slalwbp,sahlwbp_cabut,slalwbp_pasang,sahlwbp,
+slawbp,sahwbp_cabut,slawbp_pasang,sahwbp,slakvarh,sahkvarh_cabut,slakvarh_pasang,sahkvarh,pemkwh,pemkvarh,kelbkvarh,
+pecahan,jamnyala,rptag,rpreduksi,kdproses
+from emulsion.bill54 a where  thblrek='202607' and slakvarh>0 and sahkvarh=0 and thblmut<>thblrek and tarif not in('C')
+and rpkvarh>0
+--CCK STAN MUNDUR AMI-- DI 202604 JAMNYALA >100 DISIINI >300 DI PG JUGA... MASIH DITANYAKAN.... pastinya 300 (note) -- DONE
+-- Cek Anomali Jamnyala LWBP (perlu dipastikan lagi dicek lagi sisi view posgree)
+--
+
+TAMBAHAN UI
+-- PROSES LOADING DIKASIH INTERAKSI (PROSES EKSEKUSI QUERY) -- DONE
+

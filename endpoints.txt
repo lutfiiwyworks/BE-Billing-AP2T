@@ -1,0 +1,26 @@
+POST /apis/users/login
+GET /api-docs
+GET /api-docs.json
+
+GET /apis/trans101
+GET /api/cek-rpbeban?thblrek=&unitupi=&idpel=
+GET /api/cek-dibawah40jn?thblrek=&unitupi=&idpel=
+GET /api/cek-materai?thblrek=&unitupi=&idpel=&rule=
+GET /api/cek-rptag-0?thblrek=&unitupi=&idpel=
+GET /api/cek-rppn-r3?thblrek=&idpel=
+GET /api/cek-selisih-unsur-ptl?thblrek=&unitupi=&idpel=
+GET /api/cek-anomali-kelebihan-kvarh?thblrek=&unitupi=&idpel=
+GET /api/vwbilling-720jn?thblrek=&unitupi=&idpel=
+GET /api/cek-spel?thblrek=
+GET /api/cek-spel/tanpa-rptl-53950?thblrek=
+GET /api/cek-stimulus?thblrek=&unitupi=&idpel=
+GET /api/cek-rppn-lebih0?thblrek=&idpel=
+GET /api/cek-stanmundur?thblrek=&idpel=
+GET /api/cek-ppn/sewatrafo?thblrek=&unitupi=&idpel=
+GET /api/cek-ppn/bptrafo?thblrek=&unitupi=&idpel=
+GET /api/cek-ppn/sewakap?thblrek=&unitupi=&idpel=
+GET /api/cek-pks-trflwbp-2000?thblrek=&unitupi=&idpel=
+GET /api/cek-ppj?thblrek=
+GET /api/cek-ppj/beda-prosen?thblrek=
+GET /api/detil-anomali-haribaca-ap2t?thblrek=&unitupi=&idpel=&page=&limit=&sortField=&sortOrder=&search=
+GET /api/detil-anomali-haribaca-ap2t/export?thblrek=&unitupi=&idpel=&sortField=&sortOrder=&search=

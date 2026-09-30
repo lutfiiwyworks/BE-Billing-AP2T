@@ -1,0 +1,11 @@
+=> POSTGRE LJB2 PROD (SUMUT saat ini):
+IP		: 10.99.20.11
+port	: 5488
+db name : ap2t_db_ljb2
+
+=> POSTGRE JAKBAN PROD (Jakarta n Banten):
+IP		: 10.99.20.251
+port 	: 5488
+db name : ap2t_db_jakban
+
+note : user dan password masih sama dengan sebelum2 nya => User passw user PROD masing2 :
