@@ -50,8 +50,44 @@ export const initPostgres = async () => {
   }
 };
 
-// Backward-compatible: semua model lama tetap memakai pool JTG.
-export const getPgPool = () => pgPoolJtg;
+// Menjalankan query PostgreSQL ke seluruh database sumber yang aktif.
+// Model-model lama hanya memanggil `getPgPool().query(...)`, jadi fan-out
+// diletakkan di sini agar semua endpoint ikut membaca LJB1 dan JTG.
+const pgPools = [
+  { name: "New AP2T- Ljb1", pool: pgPoolLjb1 },
+  { name: "New AP2T - Jtg", pool: pgPoolJtg },
+];
+
+const allPostgresPool = {
+  async query(...args) {
+    const results = await Promise.all(
+      pgPools.map(async ({ name, pool }) => {
+        try {
+          const result = await pool.query(...args);
+
+          return {
+            ...result,
+            rows: result.rows.map((row) => ({
+              source: name,
+              ...row,
+            })),
+          };
+        } catch (error) {
+          error.message = `${name}: ${error.message}`;
+          throw error;
+        }
+      }),
+    );
+
+    return {
+      ...results[0],
+      rows: results.flatMap((result) => result.rows),
+      rowCount: results.reduce((total, result) => total + (result.rowCount || 0), 0),
+    };
+  },
+};
+
+export const getPgPool = () => allPostgresPool;
 export const getPgPoolJtg = () => pgPoolJtg;
 export const getPgPoolLjb1 = () => pgPoolLjb1;
 // Alias kompatibilitas untuk kode yang memakai nama pool kedua sebelumnya.
