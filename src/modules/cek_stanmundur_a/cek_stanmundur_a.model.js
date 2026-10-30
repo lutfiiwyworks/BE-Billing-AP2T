@@ -32,7 +32,6 @@ const getCekStanNoMut = async ({ thblrek, unitupi, idpel, limit }) => {
                 binds.idpel = idpel;
             }
 
-            sql += ` ORDER BY THBLREK, UNITUPI, IDPEL`;
 
 
 
@@ -77,7 +76,6 @@ const getCekStanNoMut = async ({ thblrek, unitupi, idpel, limit }) => {
             idx++;
         }
 
-        sql += ` ORDER BY thblrek, unitupi, unitup, idpel`;
 
 
         const result = await pgPool.query(sql, values);

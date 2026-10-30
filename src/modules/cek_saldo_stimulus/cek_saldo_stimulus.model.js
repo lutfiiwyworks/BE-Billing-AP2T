@@ -24,7 +24,6 @@ const getCekSaldoStimulus = async ({ thblrek, idpel }) => {
         binds.idpel = idpel;
       }
 
-      sql += ` ORDER BY THBLREK, IDPEL`;
 
       const result = await oraConn.execute(sql, binds, {
         outFormat: oracledb.OUT_FORMAT_OBJECT,
@@ -55,7 +54,6 @@ const getCekSaldoStimulus = async ({ thblrek, idpel }) => {
       values.push(idpel);
     }
 
-    sql += ` ORDER BY thblrek, idpel`;
 
     const result = await pgPool.query(sql, values);
 

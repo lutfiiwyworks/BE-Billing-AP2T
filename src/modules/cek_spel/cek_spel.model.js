@@ -24,7 +24,6 @@ const getCekPlgSpel = async ({ thblrek, excludeRptl53950 }) => {
         sql += ` AND rpptl <> '53950'`;
       }
 
-      sql += ` ORDER BY THBLREK, UNITUPI, UNITUP, IDPEL`;
 
 
 
@@ -54,7 +53,6 @@ const getCekPlgSpel = async ({ thblrek, excludeRptl53950 }) => {
       sql += ` AND rpptl <> '53950'`;
     }
 
-    sql += ` ORDER BY thblrek, unitupi, unitup, idpel`;
 
     const result = await pgPool.query(sql, values);
 

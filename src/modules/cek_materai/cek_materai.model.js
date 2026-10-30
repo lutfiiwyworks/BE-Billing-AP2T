@@ -52,7 +52,6 @@ const getCekMaterai = async ({ thblrek, idpel, unitupi, rule, limit }) => {
         binds.unitupi = unitupi;
       }
 
-      sql += ` ORDER BY THBLREK, UNITUPI, IDPEL`;
 
 
 
@@ -99,7 +98,6 @@ const getCekMaterai = async ({ thblrek, idpel, unitupi, rule, limit }) => {
       idx++;
     }
 
-    sql += ` ORDER BY thblrek, unitupi, idpel`;
 
     const result = await pgPool.query(sql, values);
 

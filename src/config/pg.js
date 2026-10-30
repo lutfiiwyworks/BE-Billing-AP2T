@@ -17,8 +17,8 @@ const createPgPool = (prefix) => {
     port: toNumber(process.env[`${prefix}_PORT`], 5432),
     max: toNumber(process.env[`${prefix}_MAX`], 20),
     idleTimeoutMillis: toNumber(process.env[`${prefix}_IDLE_TIMEOUT`], 30000),
-    statement_timeout: toNumber(process.env[`${prefix}_STATEMENT_TIMEOUT`], 120000),
-    query_timeout: toNumber(process.env[`${prefix}_QUERY_TIMEOUT`], 120000),
+    statement_timeout: toNumber(process.env[`${prefix}_STATEMENT_TIMEOUT`], 600000),
+    query_timeout: toNumber(process.env[`${prefix}_QUERY_TIMEOUT`], 600000),
   });
 
   pool.on("error", (err) => {
@@ -28,11 +28,10 @@ const createPgPool = (prefix) => {
   return pool;
 };
 
-// PostgreSQL LJB1: 10.99.20.11 / ap2t_db.
 export const pgPoolLjb1 = createPgPool("PG_LJB1");
-
-// PostgreSQL Jateng: 10.99.20.251 / ap2t_db_jtg.
 export const pgPoolJtg = createPgPool("PG_JTG");
+export const pgPoolLjb2 = createPgPool("PG_LJB2");
+export const pgPoolJakban = createPgPool("PG_JAKBAN");
 
 const testPool = async (pool, name) => {
   const client = await pool.connect();
@@ -42,6 +41,8 @@ const testPool = async (pool, name) => {
 
 export const initPostgres = async () => {
   try {
+    await testPool(pgPoolLjb2, "PostgreSQL LJB2");
+    await testPool(pgPoolJakban, "PostgreSQL JAKBAN");
     await testPool(pgPoolLjb1, "PostgreSQL LJB1");
     await testPool(pgPoolJtg, "PostgreSQL Jateng");
   } catch (err) {
@@ -50,12 +51,12 @@ export const initPostgres = async () => {
   }
 };
 
-// Menjalankan query PostgreSQL ke seluruh database sumber yang aktif.
-// Model-model lama hanya memanggil `getPgPool().query(...)`, jadi fan-out
-// diletakkan di sini agar semua endpoint ikut membaca LJB1 dan JTG.
+
 const pgPools = [
-  { name: "New AP2T- Ljb1", pool: pgPoolLjb1 },
-  { name: "New AP2T - Jtg", pool: pgPoolJtg },
+  { name: "NEW AP2T", pool: pgPoolLjb2 },
+  { name: "NEW AP2T", pool: pgPoolLjb1 },
+  { name: "NEW AP2T", pool: pgPoolJtg },
+  { name: "NEW AP2T", pool: pgPoolJakban },
 ];
 
 const allPostgresPool = {
@@ -90,6 +91,8 @@ const allPostgresPool = {
 export const getPgPool = () => allPostgresPool;
 export const getPgPoolJtg = () => pgPoolJtg;
 export const getPgPoolLjb1 = () => pgPoolLjb1;
-// Alias kompatibilitas untuk kode yang memakai nama pool kedua sebelumnya.
+export const getPgPoolLjb2 = () => pgPoolLjb2;
+export const getPgPoolJakban = () => pgPoolJakban;
+
 export const getPgPoolSecondary = () => pgPoolLjb1;
 
