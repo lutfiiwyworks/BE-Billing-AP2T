@@ -70,7 +70,6 @@ const getEmulsion = async ({
         binds.unitupi = unitupi;
       }
 
-      sql += ` ORDER BY THBLREK, UNITUPI, IDPEL`;
 
 
       const result = await oraConn.execute(sql, binds, {
@@ -122,7 +121,6 @@ const getEmulsion = async ({
       idx++;
     }
 
-    sql += ` ORDER BY thblrek, unitupi, idpel`;
 
     const result = await pgPool.query(sql, values);
 

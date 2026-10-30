@@ -9,3 +9,42 @@ port 	: 5488
 db name : ap2t_db_jakban
 
 note : user dan password masih sama dengan sebelum2 nya => User passw user PROD masing2 :
+
+KAMUS IP / PORT DB PRODUCTION gaes.. :
+
+=> GATEWAY PROD :
+IP	: 10.99.20.12 
+port	: 5432
+db name : ap2t_gw
+User passw user PROD masing2 :
+
+=> JATENG dan JOGJA PROD:
+-- akses READ WRITE :
+IP 		: 10.99.20.12
+port 	: 5432
+db name : ap2t_db_jtg
+User passw user PROD masing2 :
+
+-- akses READ ONLY :
+IP 		: 10.99.20.14
+port 	: 5432
+db name : ap2t_db_jtg
+User passw user PROD masing2 :
+
+=> POSTGRE LJB2 PROD (SUMUT):
+IP		: 10.99.20.12
+port	: 5432
+db name : ap2t_db_ljb2
+User passw user PROD masing2 :
+
+=> POSTGRE JAKBAN PROD :
+IP		: 10.99.20.12
+port 	: 5432
+db name : ap2t_db_jakban
+User passw user PROD masing2 :
+
+=> ODM PROD (LJB1) :
+IP 		: 10.99.20.11
+Port 	: 5488 
+DB name : ap2t_db  /  acmt
+User passw user PROD masing2 :

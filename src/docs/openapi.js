@@ -106,6 +106,42 @@ const standardEndpoints = [
     ],
   },
   {
+    path: "/api/cek-rpbeban-v1",
+    tag: "Cek Billing",
+    summary: "Cek RP beban versi 1",
+    queryNote:
+      "Minimal salah satu filter harus diisi: `THBLREK = :thblrek`/`$1`, `IDPEL = :idpel`/`$2`, atau `UNITUPI = :unitupi`/`$3`.",
+    parameters: [optionalThblrekParam, unitupiParam, idpelParam],
+    sources: [
+      { db: "Oracle", name: "DTKS.VW_CEK_RPBEBAN_V1" },
+      { db: "PostgreSQL", name: "opharapp.vw_cek_rpbeban_v1" },
+    ],
+  },
+  {
+    path: "/api/cek-rpbk",
+    tag: "Cek Billing",
+    summary: "Cek RP BK",
+    queryNote:
+      "Minimal salah satu filter harus diisi: `THBLREK = :thblrek`/`$1`, `IDPEL = :idpel`/`$2`, atau `UNITUPI = :unitupi`/`$3`.",
+    parameters: [optionalThblrekParam, unitupiParam, idpelParam],
+    sources: [
+      { db: "Oracle", name: "DTKS.VWCEK_BK_AP2T" },
+      { db: "PostgreSQL", name: "opharapp.vwcek_bk_newap2t" },
+    ],
+  },
+  {
+    path: "/api/cek-selisih-rptag",
+    tag: "Cek Billing",
+    summary: "Cek selisih RP tagihan",
+    queryNote:
+      "Minimal salah satu filter harus diisi: `THBLREK = :thblrek`/`$1`, `IDPEL = :idpel`/`$2`, atau `UNITUPI = :unitupi`/`$3`.",
+    parameters: [optionalThblrekParam, unitupiParam, idpelParam],
+    sources: [
+      { db: "Oracle", name: "DTKS.VWCEK_SELISIH_RPTAG_AP2T" },
+      { db: "PostgreSQL", name: "opharapp.vwcek_selisih_rptag_newap2t" },
+    ],
+  },
+  {
     path: "/api/cek-dibawah40jn",
     tag: "Cek Billing",
     summary: "Cek di bawah 40 jam nyala",

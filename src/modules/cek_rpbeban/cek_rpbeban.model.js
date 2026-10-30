@@ -34,7 +34,6 @@ const getCekRpbeban = async ({ thblrek, idpel, unitupi, limit }) => {
         binds.unitupi = unitupi;
       }
 
-      sql += ` ORDER BY THBLREK, UNITUPI, IDPEL`;
 
   
 
@@ -81,7 +80,6 @@ const getCekRpbeban = async ({ thblrek, idpel, unitupi, limit }) => {
       idx++;
     }
 
-    sql += ` ORDER BY thblrek, unitupi, idpel`;
 
     const result = await pgPool.query(sql, values);
 

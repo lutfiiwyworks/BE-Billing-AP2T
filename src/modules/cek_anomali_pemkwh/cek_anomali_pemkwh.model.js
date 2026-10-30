@@ -31,7 +31,6 @@ const getCekAnomaliPemkwh = async ({ thblrek, unitupi, idpel, limit }) => {
                 binds.idpel = idpel;
             }
 
-            sql += ` ORDER BY THBLREK, UNITUPI, IDPEL`;
 
 
 
@@ -76,7 +75,6 @@ const getCekAnomaliPemkwh = async ({ thblrek, unitupi, idpel, limit }) => {
             idx++;
         }
 
-        sql += ` ORDER BY thblrek, unitupi, idpel`;
 
 
         const result = await pgPool.query(sql, values);

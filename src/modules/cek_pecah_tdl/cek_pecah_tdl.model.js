@@ -28,7 +28,6 @@ const getCekPecahTdl = async ({ thblrek, unitupi, idpel }) => {
                 binds.idpel = idpel;
             }
 
-            sql += ` ORDER BY THBLREK, UNITUPI, IDPEL`;
 
 
 

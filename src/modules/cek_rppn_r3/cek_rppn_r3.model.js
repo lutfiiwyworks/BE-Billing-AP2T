@@ -24,7 +24,6 @@ const getCekRppnR3 = async ({ thblrek, idpel, limit }) => {
         binds.idpel = idpel;
       }
 
-      sql += ` ORDER BY THBLREK, IDPEL`;
 
 
 
@@ -57,7 +56,6 @@ const getCekRppnR3 = async ({ thblrek, idpel, limit }) => {
       idx++;
     }
 
-    sql += ` ORDER BY thblrek, idpel`;
 
     const result = await pgPool.query(sql, values);
 

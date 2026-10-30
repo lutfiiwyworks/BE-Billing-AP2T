@@ -34,7 +34,6 @@ const getCekAnomaliKelebihanKvarh = async ({
         binds.idpel = idpel;
       }
 
-      sql += ` ORDER BY THBLREK, UNITUPI, IDPEL`;
 
 
 
@@ -73,7 +72,6 @@ const getCekAnomaliKelebihanKvarh = async ({
       idx++;
     }
 
-    sql += ` ORDER BY thblrek, unitupi, idpel`;
 
     const result = await pgPool.query(sql, values);
 

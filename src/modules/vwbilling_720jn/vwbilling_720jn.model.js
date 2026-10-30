@@ -38,7 +38,6 @@ const getVwbilling720jn = async ({ thblrek, unitupi, idpel, kondisi, limit }) =>
         binds.idpel = idpel;
       }
 
-      sql += ` ORDER BY THBLREK, UNITUPI, IDPEL`;
 
 
 
@@ -86,7 +85,6 @@ const getVwbilling720jn = async ({ thblrek, unitupi, idpel, kondisi, limit }) =>
       idx++;
     }
 
-    sql += ` ORDER BY thblrek, unitupi, idpel`;
 
     const result = await pgPool.query(sql, values);
 

@@ -4,6 +4,7 @@ import cors from "cors";
 import trans101Routes from "./modules/trans101/trans101.routes.js";
 import usersRoutes from "./modules/users/users.routes.js";
 import getCekRpbeban from "./modules/cek_rpbeban/cek_rpbeban.routes.js";
+import getCekRpbebanV1 from "./modules/cek_rpbeban_v1/cek_rpbeban_v1.routes.js";
 import getCekDibawah40jn from "./modules/cek_dibawah40jn/cek_dibawah40jn.routes.js";
 import getCekMaterai from "./modules/cek_materai/cek_materai.routes.js";
 import getCekRptag0 from "./modules/cek_rptag_0/cek_rptag_0.routes.js";
@@ -39,6 +40,8 @@ import getCekAnomaliJnLwbp from "./modules/cek_anomali_jn_lwbp/cek_anomali_jn_lw
 import getCekSaldoStimulus from "./modules/cek_saldo_stimulus/cek_saldo_stimulus.routes.js";
 import swaggerRoutes from "./docs/swagger.routes.js";
 import getEmulsion from "./modules/cek_emulsion/cek_emulsion.routes.js";
+import getCekRpBK from "./modules/cek_rpbk/cek_rpbk.routes.js";
+import getCekSelisihRpTag from "./modules/cek_selisih_rptag/cek_selisih_rptag.routes.js"
 
 const app = express();
 
@@ -49,6 +52,7 @@ app.use(swaggerRoutes);
 app.use("/apis/trans101", trans101Routes);
 app.use("/apis/users", usersRoutes);
 app.use("/api/cek-rpbeban", getCekRpbeban);
+app.use("/api/cek-rpbeban-v1", getCekRpbebanV1);
 app.use("/api/cek-dibawah40jn", getCekDibawah40jn);
 app.use("/api/cek-materai", getCekMaterai);
 app.use("/api/cek-rptag-0", getCekRptag0);
@@ -83,6 +87,8 @@ app.use("/api/cek-anomali-koreksi-billing",getCekAnomaliBillingKoreksi);
 app.use("/api/cek-anomali-jn-lwbp", getCekAnomaliJnLwbp);
 app.use("/api/cek-saldo-stimulus", getCekSaldoStimulus);
 app.use ("/api/cek-emulsion",getEmulsion);
+app.use ("/api/cek-rpbk",getCekRpBK);
+app.use ("/api/cek-selisih-rptag",getCekSelisihRpTag);
 
 
 export default app;

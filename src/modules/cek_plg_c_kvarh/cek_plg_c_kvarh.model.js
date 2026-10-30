@@ -31,8 +31,6 @@ const cekPlgCKvarh = async ({ thblrek, unitupi, idpel, limit }) => {
                 binds.idpel = idpel;
             }
 
-            // Sorting di masing-masing database
-            sql += ` ORDER BY PEMKVARH DESC NULLS LAST`;
 
             const result = await oraConn.execute(
                 sql,
@@ -76,8 +74,6 @@ const cekPlgCKvarh = async ({ thblrek, unitupi, idpel, limit }) => {
             idx++;
         }
 
-        // Sorting di PostgreSQL
-        sql += ` ORDER BY pemkvarh DESC NULLS LAST`;
 
         const result = await pgPool.query(sql, values);
 

@@ -24,7 +24,6 @@ const getCekAnomaliBillingKoreksi = async ({ thblrek, unitupi, idpel }) => {
                 binds.idpel = idpel;
             }
 
-            sql += ` ORDER BY THBLREK, IDPEL`;
 
 
 

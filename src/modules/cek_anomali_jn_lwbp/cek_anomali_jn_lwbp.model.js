@@ -32,7 +32,6 @@ const getCekAnomaliJnLwbp = async ({ thblrek, unitupi, idpel }) => {
         binds.idpel = idpel;
       }
 
-      sql += ` ORDER BY THBLREK, UNITUPI, IDPEL`;
 
       const result = await oraConn.execute(sql, binds, {
         outFormat: oracledb.OUT_FORMAT_OBJECT,
@@ -74,7 +73,6 @@ const getCekAnomaliJnLwbp = async ({ thblrek, unitupi, idpel }) => {
       idx++;
     }
 
-    sql += ` ORDER BY thblrek, unitupi, idpel`;
 
     const result = await pgPool.query(sql, values);
 
