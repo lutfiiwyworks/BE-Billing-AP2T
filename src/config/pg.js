@@ -62,7 +62,6 @@ const pgPools = [
   { name: "NEW AP2T", pool: pgPoolJtg },
   { name: "NEW AP2T", pool: pgPoolJakban },
   { name: "NEW AP2T", pool: pgPoolJabar},
-  { name: "NEW AP2T", pool: pgPoolOltp2},
 ];
 
 const allPostgresPool = {
