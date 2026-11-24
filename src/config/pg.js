@@ -32,6 +32,8 @@ export const pgPoolLjb1 = createPgPool("PG_LJB1");
 export const pgPoolJtg = createPgPool("PG_JTG");
 export const pgPoolLjb2 = createPgPool("PG_LJB2");
 export const pgPoolJakban = createPgPool("PG_JAKBAN");
+export const pgPoolJabar = createPgPool("PG_JABAR");
+export const pgPoolOltp2 = createPgPool("PG_OLTP2");
 
 const testPool = async (pool, name) => {
   const client = await pool.connect();
@@ -45,6 +47,8 @@ export const initPostgres = async () => {
     await testPool(pgPoolJakban, "PostgreSQL JAKBAN");
     await testPool(pgPoolLjb1, "PostgreSQL LJB1");
     await testPool(pgPoolJtg, "PostgreSQL Jateng");
+    await testPool(pgPoolJabar, "postgre SQL Jabar");
+    await testPool(pgPoolOltp2, "postgre SQL OLTP2");
   } catch (err) {
     console.error("PostgreSQL Connection Failed:", err);
     throw err;
@@ -57,6 +61,8 @@ const pgPools = [
   { name: "NEW AP2T", pool: pgPoolLjb1 },
   { name: "NEW AP2T", pool: pgPoolJtg },
   { name: "NEW AP2T", pool: pgPoolJakban },
+  { name: "NEW AP2T", pool: pgPoolJabar},
+  { name: "NEW AP2T", pool: pgPoolOltp2},
 ];
 
 const allPostgresPool = {
@@ -93,6 +99,8 @@ export const getPgPoolJtg = () => pgPoolJtg;
 export const getPgPoolLjb1 = () => pgPoolLjb1;
 export const getPgPoolLjb2 = () => pgPoolLjb2;
 export const getPgPoolJakban = () => pgPoolJakban;
+export const getPgPoolJabar = () => pgPoolJabar;
+export const getPgPoolOltp2 = () => pgPoolOltp2;
 
 export const getPgPoolSecondary = () => pgPoolLjb1;
 

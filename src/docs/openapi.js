@@ -664,6 +664,28 @@ const paths = {
       idpelParam,
     ],
   }),
+  "/api/get-closing-billing": getOperation({
+    tag: "Cek Billing",
+    summary: "Get closing billing",
+    sources: [
+      { db: "Oracle", name: "DTKS.get_closing_billing" },
+      { db: "PostgreSQL", name: "opharapp.get_closing_billing" },
+    ],
+    queryNote:
+      "Filter `thblrek` contoh *202611",
+   parameters: [
+    {
+      name: "thblrek",
+        in: "query",
+        required: false,
+        description: "Satu periode atau beberapa periode rekening format YYYYMM.",
+        schema: { type: "array", items: { type: "string", pattern: "^\\d{6}$" } },
+        style: "form",
+        explode: true,
+        example: ["202611"],
+    }
+   ],
+  }),
 };
 
 for (const endpoint of [...standardEndpoints, ...noUnitEndpoints]) {
