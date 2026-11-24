@@ -55,7 +55,7 @@ const getCekRpBK = async ({ thblrek, idpel, unitupi, limit }) => {
   const postgresQuery = async () => {
     let sql = `
       SELECT *
-      FROM opharapp.vwcek_bk_newap2t
+      FROM kunabakti.vwcek_bk_newap2t
       WHERE 1=1
     `;
 

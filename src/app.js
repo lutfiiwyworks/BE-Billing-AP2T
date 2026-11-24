@@ -29,6 +29,7 @@ import getCekStanNoMut from "./modules/cek_stanmundur_a/cek_stanmundur_a.routes.
 import getPlgBtsMut from "./modules/cek_plg_bts_mut/cek_plg_bts_mut.routes.js";
 import getPlgBts from "./modules/cek_plg_bts/cek_plg_bts.routes.js";
 import getLpKurangDari from "./modules/cek_lp_kurangdari/cek_lp_kurangdari.routes.js";
+import getLpSama from "./modules/cek_lp_sama/cek_lp_sama.routes.js";
 import getLpLebihDari from "./modules/cek_lp_lebihdari/cek_lp_lebihdari.routes.js";
 import getPemkwh0 from "./modules/cek_pemkwh0/cek_pemkwh0.routes.js";
 import getCekAnomaliPemkwh from "./modules/cek_anomali_pemkwh/cek_anomali_pemkwh.routes.js";
@@ -78,6 +79,7 @@ app.use ("/api/cek-plg-bts-mut",getPlgBtsMut);
 app.use ("/api/cek-plg-bts",getPlgBts);
 app.use ("/api/cek-lp-kurangdari",getLpKurangDari);
 app.use ("/api/cek-lp-lebihdari",getLpLebihDari);
+app.use ("/api/cek-lp-sama",getLpSama);
 app.use ("/api/cek-pemkwh0",getPemkwh0);
 app.use ("/api/cek-anomali-pemkwh",getCekAnomaliPemkwh);
 app.use ("/api/cek-pb-pks",getCekPbPks);

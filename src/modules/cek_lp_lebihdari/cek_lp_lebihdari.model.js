@@ -56,7 +56,7 @@ const getLpLebihDari = async ({ thblrek, unitupi, idpel, limit }) => {
     const postgresQuery = async () => {
         let sql = `
             SELECT *
-            FROM kunabakti.cek_lp_lebihdari
+            FROM opharapp.cek_lp_lebihdari
             WHERE thblrek = $1
         `;
 

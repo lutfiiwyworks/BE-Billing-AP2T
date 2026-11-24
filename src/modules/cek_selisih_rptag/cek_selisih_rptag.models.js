@@ -55,7 +55,7 @@ const getCekSelisihRpTag = async ({ thblrek, idpel, unitupi, limit }) => {
   const postgresQuery = async () => {
     let sql = `
       SELECT *
-      FROM opharapp.vwcek_selisih_rptag_newap2t
+      FROM kunabakti.vwcek_selisih_rptag_newap2t
       WHERE 1=1
     `;
 
