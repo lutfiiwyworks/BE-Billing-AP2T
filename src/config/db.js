@@ -2,7 +2,7 @@ import "dotenv/config";
 import oracledb from "oracledb";
 
 oracledb.initOracleClient({
-  libDir: "C:\\instantclient_11_2"
+    libDir: 'C:\\oreclient_install_dir\\instantclient-basic-windows.x64-23.7.0.25.01\\instantclient_23_7'
 });
 
 const configs = [
