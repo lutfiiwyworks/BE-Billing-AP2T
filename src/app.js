@@ -43,6 +43,8 @@ import getEmulsion from "./modules/cek_emulsion/cek_emulsion.routes.js";
 import getCekRpBK from "./modules/cek_rpbk/cek_rpbk.routes.js";
 import getCekSelisihRpTag from "./modules/cek_selisih_rptag/cek_selisih_rptag.routes.js"
 import getGetClosingBilling from "./modules/get_closing_billing/get_closing_billing.routes.js"
+import getValidasiClosingBilling from "./modules/validasi_closing_billing/validasi_closing_billing.routes.js"
+
 
 
 const app = express();
@@ -92,6 +94,7 @@ app.use ("/api/cek-emulsion",getEmulsion);
 app.use ("/api/cek-rpbk",getCekRpBK);
 app.use ("/api/cek-selisih-rptag",getCekSelisihRpTag);
 app.use ("/api/get-closing-billing",getGetClosingBilling);
+app.use ("/api/validasi-closing-billing",getValidasiClosingBilling);
 
 
 
