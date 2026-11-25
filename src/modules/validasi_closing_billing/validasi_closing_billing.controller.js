@@ -12,18 +12,22 @@ const getValidasiClosingBilling = async (req, res) => {
 
     // Jika ditemukan data, dianggap gagal
     if (data.length > 0) {
-      return res.status(400).json({
-        success: false,
-        message: "GAGAL - DITEMUKAN DATA VALIDASI CLOSING BILLING",
-        total: data.length,
-        data,
-      });
-    }
+  const totalIdpel = data.reduce(
+    (total, item) => total + Number(item.IDPEL ?? item.idpel ?? 0),
+    0
+  );
+  return res.status(400).json({
+    success: false,
+    message: `Gagal - Ditemukan ${totalIdpel} IDPEL yang belum Closing Billing`,
+    total: data.length,
+    data,
+  });
+}
 
     // Jika query berhasil tetapi tidak ada data
     return res.status(200).json({
       success: true,
-      message: "SUKSES - TIDAK DITEMUKAN DATA VALIDASI CLOSING BILLING",
+      message: "Sukses - Semua unit telah Closing Billing",
       total: 0,
       data: [],
     });
@@ -33,7 +37,7 @@ const getValidasiClosingBilling = async (req, res) => {
 
     return res.status(error.statusCode || 500).json({
       success: false,
-      message: "GAGAL - QUERY VALIDASI CLOSING BILLING ERROR",
+      message: "Gagal - 500",
       error: error.message,
     });
   }

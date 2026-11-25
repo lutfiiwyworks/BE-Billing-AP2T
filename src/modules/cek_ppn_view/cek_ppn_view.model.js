@@ -5,7 +5,7 @@ import { getPgPool } from "../../config/pg.js";
 const VIEW_CONFIGS = {
   sewatrafo: {
     oracle: "dtks.cek_ppn_sewatrafo",
-    postgres: "kunabakti.cek_ppn_sewatrafo",
+    postgres: "opharapp.vw_cek_ppn_sewatrafo_v1",
   },
   bptrafo: {
     oracle: "dtks.cek_ppn_bptrafo",
@@ -13,7 +13,7 @@ const VIEW_CONFIGS = {
   },
   sewakap: {
     oracle: "dtks.cek_ppn_sewakap",
-    postgres: "kunabakti.cek_ppn_sewakap",
+    postgres: "opharapp.vw_cek_ppn_sewakap_v1",
   },
 };
 
