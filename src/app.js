@@ -44,6 +44,8 @@ import getCekRpBK from "./modules/cek_rpbk/cek_rpbk.routes.js";
 import getCekSelisihRpTag from "./modules/cek_selisih_rptag/cek_selisih_rptag.routes.js"
 import getGetClosingBilling from "./modules/get_closing_billing/get_closing_billing.routes.js"
 import getValidasiClosingBilling from "./modules/validasi_closing_billing/validasi_closing_billing.routes.js"
+import getCekLpSama from "./modules/cek_lp_sama/cek_lp_sama.routes.js"
+
 
 
 
@@ -95,6 +97,8 @@ app.use ("/api/cek-rpbk",getCekRpBK);
 app.use ("/api/cek-selisih-rptag",getCekSelisihRpTag);
 app.use ("/api/get-closing-billing",getGetClosingBilling);
 app.use ("/api/validasi-closing-billing",getValidasiClosingBilling);
+app.use ("/api/cek-lp-sama",getCekLpSama);
+
 
 
 

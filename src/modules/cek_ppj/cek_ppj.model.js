@@ -9,7 +9,7 @@ const VIEW_CONFIG = {
   },
   bedaProsen: {
     oracle: "dtks.cek_ppj",
-    postgres: "kunabakti.cek_ppj",
+    postgres: "opharapp.cek_ppj",
   },
 };
 

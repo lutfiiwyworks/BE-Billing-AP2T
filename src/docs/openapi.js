@@ -510,7 +510,7 @@ const paths = {
     summary: "Cek PPN sewa trafo",
     sources: [
       { db: "Oracle", name: "dtks.cek_ppn_sewatrafo" },
-      { db: "PostgreSQL", name: "kunabakti.cek_ppn_sewatrafo" },
+      { db: "PostgreSQL", name: "opharapp.vw_cek_ppn_sewatrafo_v1" },
     ],
     queryNote:
       "Filter `thblrek`; optional `unitupi` dan `idpel` hanya dipakai kalau kolomnya tersedia di view.",
@@ -530,7 +530,7 @@ const paths = {
     summary: "Cek PPN sewa kapasitor",
     sources: [
       { db: "Oracle", name: "dtks.cek_ppn_sewakap" },
-      { db: "PostgreSQL", name: "kunabakti.cek_ppn_sewakap" },
+      { db: "PostgreSQL", name: "opharapp.vw_cek_ppn_sewakap_v1" },
     ],
     queryNote:
       "Filter `thblrek`; optional `unitupi` dan `idpel` hanya dipakai kalau kolomnya tersedia di view.",
@@ -551,7 +551,7 @@ const paths = {
     summary: "Cek PPJ beda prosen",
     sources: [
       { db: "Oracle", name: "dtks.cek_ppj" },
-      { db: "PostgreSQL", name: "kunabakti.cek_ppj" },
+      { db: "PostgreSQL", name: "opharapp.cek_ppj" },
     ],
     queryNote:
       "Filter `thblrek` dan anomali `PROSENPPJ <> PROSEN_CEK` / `prosenppj <> prosen_cek`.",
@@ -706,6 +706,30 @@ const paths = {
         explode: true,
         example: ["202611"],
     }
+   ],
+  }),
+  "/api/cek-lp-sama": getOperation({
+    tag: "Cek Billing",
+    summary: "Validasi closing billing",
+    sources: [
+      { db: "Oracle", name: "DTKS.cek_lp_sama" },
+      { db: "PostgreSQL", name: "opharapp.cek_lp_sama" },
+    ],
+    queryNote:
+      "Filter `thblrek` contoh *202611",
+   parameters: [
+    {
+      name: "thblrek",
+        in: "query",
+        required: false,
+        description: "Satu periode atau beberapa periode rekening format YYYYMM.",
+        schema: { type: "array", items: { type: "string", pattern: "^\\d{6}$" } },
+        style: "form",
+        explode: true,
+        example: ["202611"],
+    },
+    unitupiParam,
+    idpelParam,
    ],
   }),
 };
